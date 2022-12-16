@@ -20,13 +20,23 @@ class UsersController {
     } = request.body;
 
     const database = await sqliteConnection();
-    const checkUserExists = await database.get(
+
+    const checkEmailExists = await database.get(
       'SELECT * FROM users WHERE email = (?)',
       [email]
     );
 
-    if (checkUserExists) {
+    const checkRegisterExists = await database.get(
+      'SELECT * FROM users WHERE register = (?)',
+      [register]
+    );
+
+    if (checkEmailExists) {
       throw new AppError('Este e-mail já está em uso.');
+    }
+
+    if (checkRegisterExists) {
+      throw new AppError('Este CPF já está em uso.');
     }
 
     const hashedPassword = await hash(password, 8);

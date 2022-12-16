@@ -18,3 +18,5 @@
 - Instalação do banco relacional. "npm install sqlite3 sqlite --save".
 
 - Para visualizar o banco de dados temos que usar uma SGBD: Sistema Gerenciador de Banco de Dados. Utilizei o Beekeeper.
+
+- Cara criptografar a senha utilizei o "bcryptjs".
