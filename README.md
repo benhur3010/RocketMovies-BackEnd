@@ -20,3 +20,18 @@
 - Para visualizar o banco de dados temos que usar uma SGBD: Sistema Gerenciador de Banco de Dados. Utilizei o Beekeeper.
 
 - Cara criptografar a senha utilizei o "bcryptjs".
+
+- Query Builder é um construtor de consulta que permite construir instruções SQL independente do banco de dados utilizado. Isso é bom para caso seja necessário mudar de banco de dados no futuro e não precisar reescrever tudo novemente.
+
+- A Query Builder utilizada foi o Knex. Instalação com "npm install knex --save".
+
+- As Migrations são uma forma de versionar a base de dados, trabalhando com a manipulação da base de dados: criando, alterando ou removendo.
+
+- Métodos de uma Migration:
+UP = método repsonsável por criar ou alterar algo no banco de dados
+DOWN = responsável pelo rollback, ou seja, desfazer as alterações realizadas pela migration.
+
+- Para criar as tabelas com o knex migration tem que utilizar o comando "npx knex migrate:make (nome da tabela)".
+Para executar e essas tabelas aparecerem no banco de dados, devemos utilizar o "npx knex migrate:latest" ou da forma como criei no script do package.json "npm run migrate".
+
+
