@@ -1,28 +1,50 @@
-const { hash, compare } = require("bcryptjs");
-const AppError = require("../utils/AppError");
+const { hash, compare } = require('bcryptjs');
+const AppError = require('../utils/AppError');
 
-const sqliteConnection = require("../database/sqlite");
+const sqliteConnection = require('../database/sqlite');
 
 // É utilizado a classe ao invés da função porque ela permite a criação e acesso de várias funções.
 class UsersController {
   async create(request, response) {
-    const { name, email, password } = request.body;
+    const {
+      name,
+      email,
+      password,
+      register,
+      phone,
+      postalcode,
+      street,
+      streetnumber,
+      neighborhood,
+      complement
+    } = request.body;
 
     const database = await sqliteConnection();
     const checkUserExists = await database.get(
-      "SELECT * FROM users WHERE email = (?)",
+      'SELECT * FROM users WHERE email = (?)',
       [email]
     );
 
     if (checkUserExists) {
-      throw new AppError("Este e-mail já está em uso.");
+      throw new AppError('Este e-mail já está em uso.');
     }
 
     const hashedPassword = await hash(password, 8);
 
     await database.run(
-      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [name, email, hashedPassword]
+      'INSERT INTO users (name, email, password, register, phone, postalcode, street, streetnumber, neighborhood, complement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [
+        name,
+        email,
+        hashedPassword,
+        register,
+        phone,
+        postalcode,
+        street,
+        streetnumber,
+        neighborhood,
+        complement
+      ]
     );
 
     return response.status(201).json();
@@ -33,19 +55,19 @@ class UsersController {
     const { id } = request.params;
 
     const database = await sqliteConnection();
-    const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+    const user = await database.get('SELECT * FROM users WHERE id = (?)', [id]);
 
     if (!user) {
-      throw new AppError("Usuário não encontrado");
+      throw new AppError('Usuário não encontrado');
     }
 
     const userWithUpdatedEmail = await database.get(
-      "SELECT * FROM users WHERE email = (?)",
+      'SELECT * FROM users WHERE email = (?)',
       [email]
     );
 
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
-      throw new AppError("Este e-mail já está em uso.");
+      throw new AppError('Este e-mail já está em uso.');
     }
 
     user.name = name ?? user.name;
@@ -53,7 +75,7 @@ class UsersController {
 
     if (password && !old_password) {
       throw new AppError(
-        "Você precisa informar a senha antiga para definir a nova senha."
+        'Você precisa informar a senha antiga para definir a nova senha.'
       );
     }
 
@@ -61,7 +83,7 @@ class UsersController {
       const checkOldPassword = await compare(old_password, user.password);
 
       if (!checkOldPassword) {
-        throw new AppError("A senha antiga não confere");
+        throw new AppError('A senha antiga não confere');
       }
 
       user.password = await hash(password, 8);

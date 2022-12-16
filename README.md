@@ -11,7 +11,7 @@
 - A lógica utilizando o Insomnia é: quando o "post" é feito, chega no server.js. As rotas estão sendo executadas pelo "app.use(routes)". Então ele é redirecionado para o index.js, que é onde a o server buscou informações. No index.js ele encontra a rota do usuário "routes.use("/users", usersRouter)". Quando identifica o /users, redireciona para o arquivo usersRouter. No usersRouter terão todas as rotas do usuário.
 
 - Saindo das rotas, teremos os controllers, que serão as camadas responsáveis por processar as requisições, ou seja, a parte inteligente: verificar se o usuário existe, fazer o cadastro de um produto, etc.
-O servidor é o ponto de entrada. Quando uma requisição chega nele, vai passar pelas rotas, que por sua vez irá identificar qual controller será utilizado.
+  O servidor é o ponto de entrada. Quando uma requisição chega nele, vai passar pelas rotas, que por sua vez irá identificar qual controller será utilizado.
 
 - A biblioteca express-async-errors foi instalada para lidar com erros tantos do lado do cliente como do servidor.
 
