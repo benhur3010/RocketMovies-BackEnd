@@ -61,7 +61,19 @@ class UsersController {
   }
 
   async update(request, response) {
-    const { name, email, password, old_password } = request.body;
+    const {
+      name,
+      email,
+      password,
+      old_password,
+      register,
+      phone,
+      postalcode,
+      street,
+      streetnumber,
+      neighborhood,
+      complement
+    } = request.body;
     const { id } = request.params;
 
     const database = await sqliteConnection();
@@ -76,12 +88,28 @@ class UsersController {
       [email]
     );
 
+    const userWithUpdatedRegister = await database.get(
+      'SELECT * FROM users WHERE register = (?)',
+      [register]
+    );
+
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
       throw new AppError('Este e-mail já está em uso.');
     }
 
+    if (userWithUpdatedRegister && userWithUpdatedRegister.id !== user.id) {
+      throw new AppError('Este CPF já está em uso.');
+    }
+
     user.name = name ?? user.name;
     user.email = email ?? user.email;
+    user.register = register ?? user.register;
+    user.phone = phone ?? user.phone;
+    user.postalcode = postalcode ?? user.postalcode;
+    user.street = street ?? user.street;
+    user.streetnumber = streetnumber ?? user.streetnumber;
+    user.neighborhood = neighborhood ?? user.neighborhood;
+    user.complement = complement ?? user.complement;
 
     if (password && !old_password) {
       throw new AppError(
@@ -102,10 +130,29 @@ class UsersController {
     await database.run(
       `UPDATE users SET name = ?, 
       email = ?, 
-      password = ?, 
+      password = ?,
+      register = ?,
+      phone = ?,
+      postalcode = ?,
+      street = ?,
+      streetnumber = ?,
+      neighborhood = ?,
+      complement = ?, 
       updated_at = DATETIME('now')
       WHERE id = ?`,
-      [user.name, user.email, user.password, id]
+      [
+        user.name,
+        user.email,
+        user.password,
+        user.register,
+        user.phone,
+        user.postalcode,
+        user.street,
+        user.streetnumber,
+        user.neighborhood,
+        user.complement,
+        id
+      ]
     );
 
     return response.json();
