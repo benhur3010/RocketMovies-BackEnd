@@ -36,3 +36,4 @@ Para executar e essas tabelas aparecerem no banco de dados, devemos utilizar o "
 
 - Instalei o jsonwebtoken.
 
+- Instalação do multer - Biblioteca para fazer upload de imagens.
