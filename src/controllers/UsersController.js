@@ -72,12 +72,14 @@ class UsersController {
       street,
       streetnumber,
       neighborhood,
+      city,
+      uf,
       complement
     } = request.body;
-    const { id } = request.params;
+    const user_id = request.user.id;
 
     const database = await sqliteConnection();
-    const user = await database.get('SELECT * FROM users WHERE id = (?)', [id]);
+    const user = await database.get('SELECT * FROM users WHERE id = (?)', [user_id]);
 
     if (!user) {
       throw new AppError('Usuário não encontrado');
@@ -109,6 +111,8 @@ class UsersController {
     user.street = street ?? user.street;
     user.streetnumber = streetnumber ?? user.streetnumber;
     user.neighborhood = neighborhood ?? user.neighborhood;
+    user.city = city ?? user.city;
+    user.uf = uf ?? user.uf;
     user.complement = complement ?? user.complement;
 
     if (password && !old_password) {
@@ -137,6 +141,8 @@ class UsersController {
       street = ?,
       streetnumber = ?,
       neighborhood = ?,
+      city = ?,
+      uf = ?,
       complement = ?, 
       updated_at = DATETIME('now')
       WHERE id = ?`,
@@ -150,8 +156,10 @@ class UsersController {
         user.street,
         user.streetnumber,
         user.neighborhood,
+        user.city,
+        user.uf,
         user.complement,
-        id
+        user_id
       ]
     );
 
