@@ -34,4 +34,5 @@ DOWN = responsável pelo rollback, ou seja, desfazer as alterações realizadas 
 - Para criar as tabelas com o knex migration tem que utilizar o comando "npx knex migrate:make (nome da tabela)".
 Para executar e essas tabelas aparecerem no banco de dados, devemos utilizar o "npx knex migrate:latest" ou da forma como criei no script do package.json "npm run migrate".
 
+- Instalei o jsonwebtoken.
 
