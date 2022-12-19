@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
   street VARCHAR,
   streetnumber VARCHAR,
   neighborhood VARCHAR,
+  city VARCHAR,
+  uf VARCHAR,
   complement VARCHAR,
   avatar VARCHAR NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
