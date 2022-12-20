@@ -1,12 +1,10 @@
-require('express-async-errors'); // Para lidar com os erros.
+require("express-async-errors"); // Para lidar com os erros.
+const migrationsRun = require("./database/sqlite/migrations");
+const AppError = require("./utils/AppError");
+const uploadConfig = require("./configs/upload");
 
-const migrationsRun = require('./database/sqlite/migrations');
-
-const AppError = require('./utils/AppError');
-
-const express = require('express'); // Criar uma variável que recolhe todas as dependências do express.
-
-const routes = require('./routes'); // Importando as rotas do arquivo index de "routes". 
+const express = require("express"); // Criar uma variável que recolhe todas as dependências do express.
+const routes = require("./routes"); // Importando as rotas do arquivo index de "routes".
 
 migrationsRun(); // Para executar o banco de dados.
 
@@ -14,16 +12,18 @@ const app = express(); // Função que está inicializando o express.
 
 app.use(express.json()); // Serve para saber que as requisições serão feitas no padrão json.
 
+// Usado para capturar as imagens e exibir quando buscada no backend.
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
+
 app.use(routes); // Executa as rotas.
 
 // Request é receber uma requisição e o response é a resposta fornecida.
 
 app.use((error, request, response, next) => {
-  
   // Se o erro for do lado do cliente:
   if (error instanceof AppError) {
     return response.status(error.statusCode).json({
-      status: 'error',
+      status: "error",
       message: error.message
     });
   }
@@ -31,8 +31,8 @@ app.use((error, request, response, next) => {
   console.error(error);
 
   return response.status(500).json({
-    status: 'error',
-    message: 'Internal server error'
+    status: "error",
+    message: "Internal server error"
   });
 });
 
