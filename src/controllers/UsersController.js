@@ -14,7 +14,7 @@ class UsersController {
       phone,
       postalcode,
       street,
-      streetnumber,
+      streetNumber,
       neighborhood,
       city,
       uf,
@@ -44,7 +44,7 @@ class UsersController {
     const hashedPassword = await hash(password, 8);
 
     await database.run(
-      "INSERT INTO users (name, email, password, register, phone, postalcode, street, streetnumber, neighborhood, city, uf, complement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO users (name, email, password, register, phone, postalcode, street, streetNumber, neighborhood, city, uf, complement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         name,
         email,
@@ -53,7 +53,7 @@ class UsersController {
         phone,
         postalcode,
         street,
-        streetnumber,
+        streetNumber,
         neighborhood,
         city,
         uf,
@@ -74,7 +74,7 @@ class UsersController {
       phone,
       postalcode,
       street,
-      streetnumber,
+      streetNumber,
       neighborhood,
       city,
       uf,
@@ -115,7 +115,7 @@ class UsersController {
     user.phone = phone ?? user.phone;
     user.postalcode = postalcode ?? user.postalcode;
     user.street = street ?? user.street;
-    user.streetnumber = streetnumber ?? user.streetnumber;
+    user.streetNumber = streetNumber ?? user.streetNumber;
     user.neighborhood = neighborhood ?? user.neighborhood;
     user.city = city ?? user.city;
     user.uf = uf ?? user.uf;
@@ -145,7 +145,7 @@ class UsersController {
       phone = ?,
       postalcode = ?,
       street = ?,
-      streetnumber = ?,
+      streetNumber = ?,
       neighborhood = ?,
       city = ?,
       uf = ?,
@@ -160,7 +160,7 @@ class UsersController {
         user.phone,
         user.postalcode,
         user.street,
-        user.streetnumber,
+        user.streetNumber,
         user.neighborhood,
         user.city,
         user.uf,
