@@ -3,7 +3,6 @@ const AppError = require("../utils/AppError");
 
 const sqliteConnection = require("../database/sqlite");
 
-// É utilizado a classe ao invés da função porque ela permite a criação e acesso de várias funções.
 class UsersController {
   async create(request, response) {
     const {

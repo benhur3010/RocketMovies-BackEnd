@@ -11,19 +11,18 @@ migrationsRun(); // Para executar o banco de dados.
 
 const app = express(); // Função que está inicializando o express.
 
-app.use(cors()); //Backend atender as requisições do FrontEnd.
+app.use(cors());
 
-app.use(express.json()); // Serve para saber que as requisições serão feitas no padrão json.
+app.use(express.json()); 
 
-// Usado para capturar as imagens e exibir quando buscada no backend.
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
 
-app.use(routes); // Executa as rotas.
+app.use(routes); 
 
-// Request é receber uma requisição e o response é a resposta fornecida.
+
 
 app.use((error, request, response, next) => {
-  // Se o erro for do lado do cliente:
+
   if (error instanceof AppError) {
     return response.status(error.statusCode).json({
       status: "error",
@@ -39,6 +38,6 @@ app.use((error, request, response, next) => {
   });
 });
 
-const PORT = 3333; // Variável que armazena o endereço que o express irá atender.
+const PORT = 3333; 
 
-app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`)); // Irá rodar o servidor.
+app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
