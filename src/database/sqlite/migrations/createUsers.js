@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
   phone VARCHAR,
   postalcode VARCHAR,
   street VARCHAR,
-  streetnumber VARCHAR,
+  streetNumber VARCHAR,
   neighborhood VARCHAR,
   city VARCHAR,
   uf VARCHAR,
