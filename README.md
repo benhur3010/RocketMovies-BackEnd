@@ -13,7 +13,7 @@ Explicando cada tabela e seus campos:
 ![Screenshot_1](https://user-images.githubusercontent.com/101990719/181934545-35d6be72-9531-4533-bb9f-b9ac4e00f963.png)
 
 ```
-Valores inteiros que podem variar de 1 até o 5.
+Valores inteiros que podem variar de 1 até o 10.
 Exemplos: ação, comédia, terror, medo...etc._
 ```
 
