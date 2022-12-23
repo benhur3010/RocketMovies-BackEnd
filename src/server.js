@@ -1,15 +1,15 @@
-require("express-async-errors"); // Para lidar com os erros.
+require("express-async-errors");
 const migrationsRun = require("./database/sqlite/migrations");
 const AppError = require("./utils/AppError");
 const uploadConfig = require("./configs/upload");
 
 const cors = require("cors");
-const express = require("express"); // Criar uma variável que recolhe todas as dependências do express.
-const routes = require("./routes"); // Importando as rotas do arquivo index de "routes".
+const express = require("express");
+const routes = require("./routes");
 
-migrationsRun(); // Para executar o banco de dados.
+migrationsRun();
 
-const app = express(); // Função que está inicializando o express.
+const app = express();
 
 app.use(cors());
 
