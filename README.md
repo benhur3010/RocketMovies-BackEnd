@@ -4,6 +4,8 @@
 
 Este projeto visa a criação de uma aplicação em NodeJs onde o usuário cadastra um filme e preenche com algumas informações (nome, descrição, nota), além de criar tags relacionadas a ele.
 
+O link para acesso do projeto com o Deploy você poderá acessar [AQUI] (https://rocketmovies-benhur.netlify.app)
+
 Segue abaixo a imagem utilizada como modelo:
 
 ![Untitled](https://user-images.githubusercontent.com/101990719/181934462-203754aa-25d6-435c-9751-7203cc17f41d.png)
@@ -16,8 +18,6 @@ Explicando cada tabela e seus campos:
 Valores inteiros que podem variar de 1 até o 10.
 Exemplos: ação, comédia, terror, medo...etc._
 ```
-
-O link para acesso do projeto com o Deploy você poderá acessar [AQUI] (https://rocketmovies-benhur.netlify.app)
 
 ### **Observações:**
 
