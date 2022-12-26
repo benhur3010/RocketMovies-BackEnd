@@ -17,6 +17,8 @@ Valores inteiros que podem variar de 1 até o 10.
 Exemplos: ação, comédia, terror, medo...etc._
 ```
 
+O link para acesso do projeto com o Deploy você poderá acessar [AQUI] (https://rocketmovies-benhur.netlify.app)
+
 ### **Observações:**
 
 Alguns detalhes aprendidos em aula que foram adicionados no desafio:
