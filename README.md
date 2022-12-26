@@ -4,7 +4,9 @@
 
 Este projeto visa a criação de uma aplicação em NodeJs onde o usuário cadastra um filme e preenche com algumas informações (nome, descrição, nota), além de criar tags relacionadas a ele.
 
-O link para acesso do projeto com o Deploy você poderá acessar [AQUI] (https://rocketmovies-benhur.netlify.app)
+O FrontEnd deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketMovies-FrontEnd)
+
+O link para acesso do Deploy você poderá acessar [AQUI] (https://rocketmovies-benhur.netlify.app)
 
 Segue abaixo a imagem utilizada como modelo:
 
