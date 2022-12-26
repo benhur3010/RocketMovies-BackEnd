@@ -6,7 +6,7 @@ Este projeto visa a criação de uma aplicação em NodeJs onde o usuário cadas
 
 O FrontEnd deste projeto você encontrará neste repositório [AQUI](https://github.com/benhur3010/RocketMovies-FrontEnd)
 
-O link para acesso do Deploy você poderá acessar [AQUI] (https://rocketmovies-benhur.netlify.app)
+O link para acesso do Deploy você poderá acessar [AQUI](https://rocketmovies-benhur.netlify.app)
 
 Segue abaixo a imagem utilizada como modelo:
 
