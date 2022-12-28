@@ -1,7 +1,9 @@
 const { hash, compare } = require("bcryptjs");
 const AppError = require("../utils/AppError");
 
+const UserRepository = require("../repositories/UserRepository");
 const sqliteConnection = require("../database/sqlite");
+const UserCreateService = require("../services/UserCreateService");
 
 class UsersController {
   async create(request, response) {
@@ -20,45 +22,23 @@ class UsersController {
       complement
     } = request.body;
 
-    const database = await sqliteConnection();
+    const userRepository = new UserRepository();
+    const userCreateService = new UserCreateService(userRepository);
 
-    const checkEmailExists = await database.get(
-      "SELECT * FROM users WHERE email = (?)",
-      [email]
-    );
-
-    const checkRegisterExists = await database.get(
-      "SELECT * FROM users WHERE register = (?)",
-      [register]
-    );
-
-    if (checkEmailExists) {
-      throw new AppError("Este e-mail já está em uso.");
-    }
-
-    if (checkRegisterExists) {
-      throw new AppError("Este CPF já está em uso.");
-    }
-
-    const hashedPassword = await hash(password, 8);
-
-    await database.run(
-      "INSERT INTO users (name, email, password, register, phone, postalcode, street, streetNumber, neighborhood, city, uf, complement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-      [
-        name,
-        email,
-        hashedPassword,
-        register,
-        phone,
-        postalcode,
-        street,
-        streetNumber,
-        neighborhood,
-        city,
-        uf,
-        complement
-      ]
-    );
+    await userCreateService.execute({
+      name,
+      email,
+      password,
+      register,
+      phone,
+      postalcode,
+      street,
+      streetNumber,
+      neighborhood,
+      city,
+      uf,
+      complement
+    });
 
     return response.status(201).json();
   }
